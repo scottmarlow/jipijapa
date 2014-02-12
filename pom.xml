@@ -78,7 +78,8 @@
         <eclipselink.version.2.3.stable>2.3.2</eclipselink.version.2.3.stable>
         <eclipselink.version.2.3.milestone>2.3.3-M3</eclipselink.version.2.3.milestone>
         <eclipselink.version.2.4.milestone>2.4.2</eclipselink.version.2.4.milestone>
-        <eclipselink.version>${eclipselink.version.2.4.milestone}</eclipselink.version>
+        <eclipselink.version.2.6.milestone>2.6.0-M2</eclipselink.version.2.6.milestone>
+        <eclipselink.version>${eclipselink.version.2.6.milestone}</eclipselink.version>
         
         <!-- OpenJPA -->
         <version.org.apache.openjpa>2.1.1</version.org.apache.openjpa>

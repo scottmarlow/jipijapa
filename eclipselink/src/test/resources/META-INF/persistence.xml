@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+    <persistence-unit name="testpu" transaction-type="RESOURCE_LOCAL">
+    <class>org.jipijapa.test.eclipselink.Employee</class>
+    <properties>
+        <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
+        <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:tests"/>
+        <property name="eclipselink.target-database" value="HSQL"/>
+        <property name="eclipselink.ddl-generation" value="create-tables"/>
+        <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+        <property name="eclipselink.weaving" value="false"/>
+        <property name="eclipselink.logging.level" value="INFO"/>
+    </properties>
+  </persistence-unit>
+
+    <persistence-unit name="TransportManagerPU" transaction-type="RESOURCE_LOCAL">
+    <class>org.jipijapa.test.eclipselink.Employee</class>
+    <properties>
+        <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
+        <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:tests"/>
+        <property name="eclipselink.target-database" value="HSQL"/>
+        <property name="eclipselink.ddl-generation" value="create-tables"/>
+        <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+        <property name="eclipselink.weaving" value="false"/>
+        <property name="eclipselink.logging.level" value="INFO"/>
+        <property name="eclipselink.cache.coordination.protocol" value="org.jipijapa.test.eclipselink.ClusterInvalidationHookTest$TransportManagerTestImpl"/>
+    </properties>
+  </persistence-unit>
+
+</persistence>
+
