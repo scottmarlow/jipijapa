@@ -24,11 +24,13 @@ import org.jipijapa.cache.spi.Wrapper;
 import org.jipijapa.plugin.spi.PersistenceUnitMetadata;
 
 /**
- * lifecycle EventListener
+ * lifecycle EventListener that allows the platform to be notified (or called back), to perform
+ * integration tasks.
  *
  * @author Scott Marlow
  */
-public interface EventListener {
+public interface
+        EventListener {
 
     /**
      * called before call to PersistenceProvider.createContainerEntityManagerFactory(PersistenceUnit, Map)
