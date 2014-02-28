@@ -90,7 +90,7 @@
         <eclipselink.version>${eclipselink.version.2.6.milestone}</eclipselink.version>
         
         <!-- OpenJPA -->
-        <version.org.apache.openjpa>2.1.1</version.org.apache.openjpa>
+        <version.org.apache.openjpa>2.2.2</version.org.apache.openjpa>
 
         <!-- Checkstyle configuration -->
         <linkXRef>false</linkXRef>
@@ -114,6 +114,35 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
+<!--
+            <plugin>
+               <groupId>org.apache.openjpa</groupId>
+               <artifactId>openjpa-maven-plugin</artifactId>
+               <version>${version.org.apache.openjpa}</version>
+               <configuration>
+                   <includes>**/openjpa/**/*.class</includes>
+                   <excludes>**/openjpa/**/XML*.class</excludes>
+                   <addDefaultConstructor>true</addDefaultConstructor>
+                   <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+               </configuration>
+               <executions>
+                   <execution>
+                       <id>enhancer</id>
+                       <phase>process-classes</phase>
+                       <goals>
+                           <goal>enhance</goal>
+                       </goals>
+                   </execution>
+               </executions>
+               <dependencies>
+                   <dependency>
+                       <groupId>org.apache.openjpa</groupId>
+                       <artifactId>openjpa</artifactId>
+                       <version>1.2.2</version>
+                   </dependency>
+               </dependencies>
+           </plugin>
+-->
         </plugins>
         <pluginManagement>
             <plugins>
