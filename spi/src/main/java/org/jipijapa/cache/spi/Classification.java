@@ -27,6 +27,7 @@ import java.util.Map;
  */
 public enum Classification {
     INFINISPAN("Infinispan"),
+    SHAREDCLUSTER("SharedCluster"),
     NONE(null);
 
     private final String name;
