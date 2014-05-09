@@ -18,8 +18,12 @@
 package org.jipijapa.eclipselink;
 
 import java.util.Map;
+import java.util.Properties;
+
+import javax.persistence.SharedCacheMode;
 
 import org.jboss.logging.Logger;
+import org.jipijapa.cache.spi.Classification;
 import org.jipijapa.plugin.spi.JtaManager;
 import org.jipijapa.plugin.spi.ManagementAdaptor;
 import org.jipijapa.plugin.spi.PersistenceProviderAdaptor;
@@ -31,10 +35,16 @@ public class EclipseLinkPersistenceProviderAdaptor implements
 
     private final Logger logger = Logger.getLogger(EclipseLinkPersistenceProviderAdaptor.class);
 
+    private volatile Platform platform;
+
     public static final String
         ECLIPSELINK_TARGET_SERVER = "eclipselink.target-server",
         ECLIPSELINK_ARCHIVE_FACTORY = "eclipselink.archive.factory",
-        ECLIPSELINK_LOGGING_LOGGER = "eclipselink.logging.logger";
+        ECLIPSELINK_LOGGING_LOGGER = "eclipselink.logging.logger",
+        NONE = SharedCacheMode.NONE.name(),
+        SHARED_CACHE_MODE = "javax.persistence.sharedCache.mode",
+        JIPI_CLUSTEREDCACHE = "jipijapa.clustercache"
+                ;
 
     private final boolean hasJTABug;
 
@@ -86,12 +96,42 @@ public class EclipseLinkPersistenceProviderAdaptor implements
 
     @Override
     public void injectPlatform(Platform platform) {
-
+        if (this.platform != platform) {
+            this.platform = platform;
+        }
     }
 
     @Override
     public void addProviderDependencies(PersistenceUnitMetadata pu) {
-        // No action required
+        final Properties properties = pu.getProperties();
+        final String sharedCacheMode = properties.getProperty(SHARED_CACHE_MODE);
+
+        if ( Classification.NONE.equals(platform.defaultCacheClassification())) {
+            if (!SharedCacheMode.NONE.equals(pu.getSharedCacheMode())) {
+                logger.tracef("second level cache is not supported in platform, ignoring shared cache mode");
+            }
+            pu.setSharedCacheMode(SharedCacheMode.NONE);
+        }
+        // check if 2lc is explicitly disabled which takes precedence over other settings
+        boolean sharedCacheDisabled = SharedCacheMode.NONE.equals(pu.getSharedCacheMode())
+                ||
+                NONE.equals(sharedCacheMode);
+
+        if (!sharedCacheDisabled &&
+                Boolean.parseBoolean(properties.getProperty(JIPI_CLUSTEREDCACHE))
+                ||
+                (sharedCacheMode != null && (!NONE.equals(sharedCacheMode)))
+                || (!SharedCacheMode.NONE.equals(pu.getSharedCacheMode()) && (!SharedCacheMode.UNSPECIFIED.equals(pu.getSharedCacheMode())))) {
+            SecondLevelCache.addSecondLevelCacheDependencies(pu.getProperties(), pu.getScopedPersistenceUnitName());
+            logger.tracef("second level cache enabled for %s", pu.getScopedPersistenceUnitName());
+        } else {
+            logger.tracef("second level cache disabled for %s, pu %s property = %s, pu.getSharedCacheMode = %s",
+                    pu.getScopedPersistenceUnitName(),
+                    SHARED_CACHE_MODE,
+                    sharedCacheMode,
+                    pu.getSharedCacheMode().toString());
+        }
+
     }
 
     @Override
