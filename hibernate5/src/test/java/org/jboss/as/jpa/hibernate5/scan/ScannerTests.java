@@ -33,6 +33,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import org.hibernate.metamodel.archive.internal.ArchiveHelper;
 import org.hibernate.metamodel.archive.scan.internal.ClassDescriptorImpl;
+import org.hibernate.metamodel.archive.scan.internal.ScanResultCollector;
 import org.hibernate.metamodel.archive.scan.internal.StandardScanOptions;
 import org.hibernate.metamodel.archive.scan.spi.AbstractScannerImpl;
 import org.hibernate.metamodel.archive.scan.spi.MappingFileDescriptor;
@@ -396,7 +397,7 @@ public class ScannerTests {
 		archive.as( ExplodedExporter.class ).exportExploded( shrinkwrapArchiveDirectory );
 		return testPackage;
 	}
-
+/***
 	@Test
 	public void testHttp() throws Exception {
 		URL url = ArchiveHelper.getJarURLFromURLEntry(
@@ -414,7 +415,7 @@ public class ScannerTests {
 			return;
 		}
 		ArchiveDescriptor archiveDescriptor = VirtualFileSystemArchiveDescriptorFactory.INSTANCE.buildArchiveDescriptor( url );
-		AbstractScannerImpl.ResultCollector resultCollector = new AbstractScannerImpl.ResultCollector( new StandardScanOptions() );
+        ScanResultCollector resultCollector = new ScanResultCollector ( new StandardScanOptions() );
 		archiveDescriptor.visitArchive(
 				new AbstractScannerImpl.ArchiveContextImpl(
 						new PersistenceUnitDescriptorAdapter(),
@@ -638,6 +639,7 @@ public class ScannerTests {
 			stream.close();
 		}
 	}
+****************/
 
 	@Test
 	public void testGetBytesFromInputStream() throws Exception {
