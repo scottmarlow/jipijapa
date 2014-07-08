@@ -101,6 +101,41 @@ public class QueryName {
     private static final String HAT__ = "_hat_";
     private static final String AMPERSAND__ = "_ampersand_";
 
+    private final StringReplace[] replacements = new StringReplace[] {
+        new StringReplace(SQL_NE, NOT_EQUAL__),
+            new StringReplace(NE_BANG, BANG_NOT_EQUAL__),
+            new StringReplace(NE_HAT, HAT_NOT_EQUAL__),
+            new StringReplace(LE, LESS_THAN_EQUAL__),
+            new StringReplace(GE, GREATER_THAN_EQUAL__),
+            new StringReplace(CONCAT, CONCAT__),
+            new StringReplace(LT, LESS_THAN__),
+            new StringReplace(EQ, EQUAL__),
+            new StringReplace(GT, GREATER__),
+            new StringReplace(OPEN, LEFT_PAREN__),
+            new StringReplace(CLOSE, RIGHT_PAREN__),
+            new StringReplace(OPEN_BRACKET, LEFT_BRACKET__),
+            new StringReplace(CLOSE_BRACKET, RIGHT_BRACKET__),
+            new StringReplace(PLUS, PLUS__),
+            new StringReplace(MINUS, MINUS__),
+            new StringReplace(STAR, STAR__),
+            new StringReplace(DIV, DIVIDE__),
+            new StringReplace(MOD, MODULUS__),
+            new StringReplace(COLON, COLON__),
+            new StringReplace(PARAM, PARAM__),
+            new StringReplace(COMMA, COMMA__),
+            new StringReplace(SPACE, SPACE__),
+            new StringReplace(TAB, TAB__),
+            new StringReplace(NEWLINE, NEWLINE__),
+            new StringReplace(LINEFEED, LINEFEED__),
+            new StringReplace(QUOTE, QUOTE__),
+            new StringReplace(DQUOTE, DQUOTE__),
+            new StringReplace(TICK, TICK__),
+            new StringReplace(OPEN_BRACE, OPEN_BRACE__),
+            new StringReplace(CLOSE_BRACE, CLOSE_BRACE__),
+            new StringReplace(HAT, HAT__),
+            new StringReplace(AMPERSAND, AMPERSAND__)
+    };
+
     public static QueryName queryName(String query) {
         return new QueryName(query);
     }
@@ -153,61 +188,7 @@ public class QueryName {
             query.length() == 0) {
             return query;
         }
-        StringBuilder buff = new StringBuilder(query);
-
-        // handle two character transforms first
-        subst(buff, SQL_NE, NOT_EQUAL__);
-        subst(buff, NE_BANG, BANG_NOT_EQUAL__);
-        subst(buff, NE_HAT, HAT_NOT_EQUAL__);
-        subst(buff, LE, LESS_THAN_EQUAL__);
-        subst(buff, GE, GREATER_THAN_EQUAL__);
-        subst(buff, CONCAT, CONCAT__);
-        subst(buff, LT, LESS_THAN__);
-        subst(buff, EQ, EQUAL__);
-        subst(buff, GT, GREATER__);
-        subst(buff, OPEN, LEFT_PAREN__);
-        subst(buff, CLOSE, RIGHT_PAREN__);
-        subst(buff, OPEN_BRACKET, LEFT_BRACKET__);
-        subst(buff, CLOSE_BRACKET, RIGHT_BRACKET__);
-        subst(buff, PLUS, PLUS__);
-        subst(buff, MINUS, MINUS__);
-        subst(buff, STAR, STAR__);
-        subst(buff, DIV, DIVIDE__);
-        subst(buff, MOD, MODULUS__);
-        subst(buff, COLON, COLON__);
-        subst(buff, PARAM, PARAM__);
-        subst(buff, COMMA, COMMA__);
-        subst(buff, SPACE, SPACE__);
-        subst(buff, TAB, TAB__);
-        subst(buff, NEWLINE, NEWLINE__);
-        subst(buff, LINEFEED, LINEFEED__);
-        subst(buff, QUOTE, QUOTE__);
-        subst(buff, DQUOTE, DQUOTE__);
-        subst(buff, TICK, TICK__);
-        subst(buff, OPEN_BRACE, OPEN_BRACE__);
-        subst(buff, CLOSE_BRACE, CLOSE_BRACE__);
-        subst(buff, HAT, HAT__);
-        subst(buff, AMPERSAND, AMPERSAND__);
-        return buff.toString();
+        return StringReplace.replace(query, replacements);
     }
 
-    /**
-     * Substitute sub-strings inside of a string.
-     *
-     * @param stringBuilder String buffer to use for substitution (buffer is not reset)
-     * @param from String to substitute from
-     * @param to   String to substitute to
-     */
-    private static void subst(final StringBuilder stringBuilder, final String from, final String to) {
-        int begin = 0, end = 0;
-
-        while ((end = stringBuilder.indexOf(from, end)) != -1) {
-            stringBuilder.delete(end, end + from.length());
-            stringBuilder.insert(end, to);
-
-            // update positions
-            begin = end + to.length();
-            end = begin;
-        }
-    }
 }
