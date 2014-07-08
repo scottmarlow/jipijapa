@@ -5,7 +5,7 @@ package org.jboss.as.jpa.hibernate4.management;
  *
  * @author Scott Marlow
  */
-public class StringReplace {
+public final class StringReplace {
 
     private final String find;
     private final String replacement;
