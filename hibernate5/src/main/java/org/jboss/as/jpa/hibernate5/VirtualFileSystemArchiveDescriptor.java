@@ -16,10 +16,10 @@
  */
 package org.jboss.as.jpa.hibernate5;
 
-import org.hibernate.metamodel.archive.spi.ArchiveContext;
-import org.hibernate.metamodel.archive.spi.ArchiveDescriptor;
-import org.hibernate.metamodel.archive.spi.ArchiveEntry;
-import org.hibernate.metamodel.archive.spi.InputStreamAccess;
+import org.hibernate.boot.archive.spi.ArchiveContext;
+import org.hibernate.boot.archive.spi.ArchiveDescriptor;
+import org.hibernate.boot.archive.spi.ArchiveEntry;
+import org.hibernate.boot.archive.spi.InputStreamAccess;
 import org.jboss.vfs.VirtualFile;
 
 

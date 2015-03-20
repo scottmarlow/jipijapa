@@ -31,13 +31,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
-import org.hibernate.metamodel.archive.internal.ArchiveHelper;
-import org.hibernate.metamodel.archive.scan.internal.ClassDescriptorImpl;
-import org.hibernate.metamodel.archive.scan.internal.ScanResultCollector;
-import org.hibernate.metamodel.archive.scan.internal.StandardScanOptions;
-import org.hibernate.metamodel.archive.scan.spi.AbstractScannerImpl;
-import org.hibernate.metamodel.archive.scan.spi.MappingFileDescriptor;
-import org.hibernate.metamodel.archive.spi.ArchiveDescriptor;
+import org.hibernate.boot.archive.internal.ArchiveHelper;
+import org.hibernate.boot.archive.scan.internal.ClassDescriptorImpl;
+import org.hibernate.boot.archive.scan.internal.ScanResultCollector;
+import org.hibernate.boot.archive.scan.internal.StandardScanOptions;
+import org.hibernate.boot.archive.scan.spi.AbstractScannerImpl;
+import org.hibernate.boot.archive.scan.spi.MappingFileDescriptor;
+import org.hibernate.boot.archive.spi.ArchiveDescriptor;
 import org.jboss.as.jpa.hibernate5.VirtualFileSystemArchiveDescriptorFactory;
 
 import org.hibernate.jpa.test.pack.Cat;
