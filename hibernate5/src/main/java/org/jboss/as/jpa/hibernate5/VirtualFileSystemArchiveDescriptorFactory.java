@@ -19,8 +19,8 @@ package org.jboss.as.jpa.hibernate5;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import org.hibernate.metamodel.archive.internal.StandardArchiveDescriptorFactory;
-import org.hibernate.metamodel.archive.spi.ArchiveDescriptor;
+import org.hibernate.boot.archive.internal.StandardArchiveDescriptorFactory;
+import org.hibernate.boot.archive.spi.ArchiveDescriptor;
 import org.jboss.vfs.VFS;
 
 

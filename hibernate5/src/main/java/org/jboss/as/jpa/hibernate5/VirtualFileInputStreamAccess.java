@@ -19,8 +19,8 @@ package org.jboss.as.jpa.hibernate5;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.hibernate.metamodel.archive.spi.ArchiveException;
-import org.hibernate.metamodel.archive.spi.InputStreamAccess;
+import org.hibernate.boot.archive.spi.ArchiveException;
+import org.hibernate.boot.archive.spi.InputStreamAccess;
 import org.jboss.vfs.VirtualFile;
 
 

@@ -17,8 +17,8 @@
 package org.jboss.as.jpa.hibernate5;
 
 
-import org.hibernate.metamodel.archive.scan.spi.AbstractScannerImpl;
-import org.hibernate.metamodel.archive.scan.spi.Scanner;
+import org.hibernate.boot.archive.scan.spi.AbstractScannerImpl;
+import org.hibernate.boot.archive.scan.spi.Scanner;
 
 /**
  * Annotation scanner for Hibernate.  Essentially just passes along the VFS-based ArchiveDescriptorFactory
