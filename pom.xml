@@ -75,8 +75,8 @@
         <version.org.hibernate.javax.persistence.hibernate-jpa-2.1-api>1.0.0.Final</version.org.hibernate.javax.persistence.hibernate-jpa-2.1-api>
 
         <!-- Hibernate 5.x -->
-        <version.org.hibernate5>5.0.0-SNAPSHOT</version.org.hibernate5>
-        <version.org.hibernate5.commons.annotations>4.0.4.Final</version.org.hibernate5.commons.annotations>
+        <version.org.hibernate5>5.0.0.Beta2</version.org.hibernate5>
+        <version.org.hibernate5.commons.annotations>4.0.5.Final</version.org.hibernate5.commons.annotations>
  
         <!-- EclipseLink -->
         <eclipselink.version.2.3.stable>2.3.2</eclipselink.version.2.3.stable>
